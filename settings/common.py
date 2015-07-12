@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     "cinemair.common",
     "cinemair.films",
     "cinemair.cinemas",
+    "cinemair.shows",
 )
 
 MIDDLEWARE_CLASSES = (
