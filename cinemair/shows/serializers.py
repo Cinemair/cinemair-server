@@ -15,7 +15,11 @@ class ShowSerializer(serializers.ModelSerializer):
         model = models.Show
 
     def get_film_info(self, obj):
-        return FilmRelatedSerializer(obj.film)
+        data = FilmRelatedSerializer(obj.film).data
+        del data["id"]
+        return data
 
     def get_cinema_info(self, obj):
-        return CinemaRelatedSerializer(obj.cinema)
+        data = CinemaRelatedSerializer(obj.cinema).data
+        del data["id"]
+        return data
