@@ -70,6 +70,7 @@ INSTALLED_APPS = (
 
     "cinemair",
     "cinemair.common",
+    "cinemair.films",
     "cinemair.cinemas",
 )
 
