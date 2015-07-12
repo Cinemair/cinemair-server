@@ -8,3 +8,5 @@ createdb cinemair
 echo "-> Load migrations"
 python manage.py migrate
 
+echo "-> Load sample-data"
+python manage.py sampledata

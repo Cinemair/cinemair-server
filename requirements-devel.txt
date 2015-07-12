@@ -2,3 +2,5 @@
 
 ipython
 ipdb
+
+django-sampledatahelper==0.3
