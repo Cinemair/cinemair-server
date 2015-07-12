@@ -69,6 +69,7 @@ INSTALLED_APPS = (
     "rest_framework",
 
     "cinemair",
+    "cinemair.common",
 )
 
 MIDDLEWARE_CLASSES = (
