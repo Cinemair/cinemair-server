@@ -8,3 +8,6 @@ class Cinema(models.Model):
     class Meta:
         verbose_name = _("cinema")
         verbose_name_plural = _("cinemas")
+
+    def __str__(self):
+        return self.name

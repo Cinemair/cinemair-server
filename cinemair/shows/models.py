@@ -12,3 +12,7 @@ class Show(models.Model):
         verbose_name_plural = _("shows")
         ordering = ["datetime", "cinema", "id"]
 
+    def __str__(self):
+        return "{} - {} - {}".format(self.datetime.strftime("%d/%m/%y %H:%M"),
+                                     self.film,
+                                     self.cinema)

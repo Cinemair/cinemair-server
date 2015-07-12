@@ -9,4 +9,5 @@ class Film(models.Model):
         verbose_name = _("film")
         verbose_name_plural = _("films")
 
-
+    def __str__(self):
+        return self.name
