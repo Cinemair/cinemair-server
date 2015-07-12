@@ -37,7 +37,8 @@ class Command(BaseCommand):
     def _create_admin_user(self):
         user = User.objects.create(username="admin",
                                    email="admin@cinemair.com",
-                                   full_name="Administrator")
+                                   full_name="Administrator",
+                                   is_superuser=True)
 
         user.set_password("123123")
         user.save()
