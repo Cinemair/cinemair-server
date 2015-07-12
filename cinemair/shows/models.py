@@ -10,3 +10,5 @@ class Show(models.Model):
     class Meta:
         verbose_name = _("show")
         verbose_name_plural = _("shows")
+        ordering = ["datetime", "cinema", "id"]
+
