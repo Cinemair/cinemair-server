@@ -70,10 +70,15 @@ INSTALLED_APPS = (
 
     "cinemair",
     "cinemair.common",
+    "cinemair.users",
     "cinemair.films",
     "cinemair.cinemas",
     "cinemair.shows",
 )
+
+
+AUTH_USER_MODEL = "users.User"
+
 
 MIDDLEWARE_CLASSES = (
     "django.contrib.sessions.middleware.SessionMiddleware",
