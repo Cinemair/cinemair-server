@@ -1,13 +1,16 @@
-cinemair-server
-===============
+# Cinemair
+### A Madrid open air cinema movie finder mobile app
 
-## develop env.:
+![Cinemair](http://i.imgur.com/4wG4niB.png)
 
-```
-mkvirtualenv -p /usr/bin/python3 cinemair
-pip install -r requirements-devel.txt
 
-scripts/regenerate.sh
+#### Install (develop env.):
 
-./manage.py runserver
-```
+  ```
+  mkvirtualenv -p /usr/bin/python3 cinemair
+  pip install -r requirements-devel.txt
+
+  scripts/regenerate.sh
+
+  ./manage.py runserver
+  ```
