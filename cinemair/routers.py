@@ -12,3 +12,6 @@ router.register(r"films", FilmsViewSet, base_name="films")
 from cinemair.shows.api import ShowsViewSet
 router.register(r"shows", ShowsViewSet, base_name="shows")
 
+from cinemair.events.api import EventsViewSet
+router.register(r"events", EventsViewSet, base_name="events")
+

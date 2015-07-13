@@ -23,3 +23,21 @@ class ShowSerializer(serializers.ModelSerializer):
         data = CinemaRelatedSerializer(obj.cinema).data
         del data["id"]
         return data
+
+
+class ShowRelatedSerializer(serializers.ModelSerializer):
+    film_info = drf_serializers.SerializerMethodField()
+    cinema_info = drf_serializers.SerializerMethodField()
+
+    class Meta:
+        model = models.Show
+
+    def get_film_info(self, obj):
+        data = FilmRelatedSerializer(obj.film).data
+        del data["id"]
+        return data
+
+    def get_cinema_info(self, obj):
+        data = CinemaRelatedSerializer(obj.cinema).data
+        del data["id"]
+        return data
