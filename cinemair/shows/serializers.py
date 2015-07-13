@@ -25,19 +25,15 @@ class ShowSerializer(serializers.ModelSerializer):
         return data
 
 
-class ShowRelatedSerializer(serializers.ModelSerializer):
-    film_info = drf_serializers.SerializerMethodField()
-    cinema_info = drf_serializers.SerializerMethodField()
+class ShowRelatedSerializer(ShowSerializer):
+    pass
 
-    class Meta:
-        model = models.Show
 
-    def get_film_info(self, obj):
-        data = FilmRelatedSerializer(obj.film).data
-        del data["id"]
-        return data
+class CinemaShowNestedSerializer(ShowSerializer):
+    class Meta(ShowSerializer.Meta):
+        exclude = ("cinema_info",)
 
-    def get_cinema_info(self, obj):
-        data = CinemaRelatedSerializer(obj.cinema).data
-        del data["id"]
-        return data
+
+class FilmShowNestedSerializer(ShowSerializer):
+    class Meta(ShowSerializer.Meta):
+        exclude = ("film_info",)
