@@ -45,7 +45,10 @@ class Command(BaseCommand):
         return user
 
     def _create_cinema(self):
-        return Cinema.objects.create(name=self.sd.words(1, 3))
+        return Cinema.objects.create(name=self.sd.words(1, 3),
+                                     address="{}, {}".format(self.sd.words(1, 3), self.sd.int(1, 200)),
+                                     city="Madrid",
+                                     country="Spain")
 
     def _create_film(self):
         return Film.objects.create(name=self.sd.words(1, 5))
@@ -54,5 +57,3 @@ class Command(BaseCommand):
         return Show.objects.create(film=self.sd.db_object(Film),
                                    cinema=self.sd.db_object(Cinema),
                                    datetime=self.sd.future_datetime(max_distance=60*24*90))
-
-
