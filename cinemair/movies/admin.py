@@ -8,10 +8,10 @@ from . import models
 @admin.register(models.Movie)
 class Movies(admin.ModelAdmin):
     fieldsets = (
-        (None, {"fields": ("name", "mdb_id")}),
+        (None, {"fields": ("name", "tmdb_id")}),
     )
     inlines = [ShowsInline,]
-    list_display = ("id", "name", "mdb_id")
+    list_display = ("id", "name", "tmdb_id")
     #list_filter = (,)
     search_fields = ("name",)
     ordering = ("name",)

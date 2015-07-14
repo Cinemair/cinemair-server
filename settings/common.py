@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "django_pgjson",
     "rest_framework",
 
     "cinemair",
@@ -113,4 +114,5 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
-
+# The MovieDB API KEY
+THEMOVIEDB_API_KEY = '247e0e9d8f8cadd19b1cc9b925a68270'
