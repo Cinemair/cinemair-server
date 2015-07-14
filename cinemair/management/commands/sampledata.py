@@ -76,7 +76,8 @@ class Command(BaseCommand):
                                      country="Spain")
 
     def _create_movie(self):
-        return Movie.objects.create(name=self.sd.words(1, 5))
+        return Movie.objects.create(name=self.sd.words(1, 5),
+                                    mdb_id=self.sd.int(500, 600))
 
     def _create_show(self):
         return Show.objects.create(movie=self.sd.db_object(Movie),
