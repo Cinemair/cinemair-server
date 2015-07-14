@@ -5,7 +5,7 @@ from sampledatahelper.helper import SampleDataHelper
 
 from cinemair.users.models import User
 from cinemair.cinemas.models import Cinema
-from cinemair.films.models import Film
+from cinemair.movies.models import Movie
 from cinemair.shows.models import Show
 from cinemair.events.models import Event
 
@@ -28,9 +28,9 @@ class Command(BaseCommand):
         for i in range(1, NUM_CINEMAS + 1):
             self._create_cinema()
 
-        # Create films
+        # Create movies
         for i in range(1, NUM_FILMS + 1):
-            self._create_film()
+            self._create_movie()
 
         # Create shows
         for i in range(1, NUM_SHOWS + 1):
@@ -75,11 +75,11 @@ class Command(BaseCommand):
                                      city="Madrid",
                                      country="Spain")
 
-    def _create_film(self):
-        return Film.objects.create(name=self.sd.words(1, 5))
+    def _create_movie(self):
+        return Movie.objects.create(name=self.sd.words(1, 5))
 
     def _create_show(self):
-        return Show.objects.create(film=self.sd.db_object(Film),
+        return Show.objects.create(movie=self.sd.db_object(Movie),
                                    cinema=self.sd.db_object(Cinema),
                                    datetime=self.sd.future_datetime(max_distance=60*24*90))
 

@@ -11,14 +11,14 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Film',
+            name='Movie',
             fields=[
                 ('id', models.AutoField(serialize=False, auto_created=True, verbose_name='ID', primary_key=True)),
                 ('name', models.CharField(max_length=500, verbose_name='name')),
             ],
             options={
-                'verbose_name_plural': 'films',
-                'verbose_name': 'film',
+                'verbose_name_plural': 'movies',
+                'verbose_name': 'movie',
             },
         ),
     ]

@@ -16,6 +16,6 @@ class ShowsNestedViewSet(mixins.NestedViewSetMixin, viewsets.ReadOnlyModelViewSe
 class CinemaShowsNestedViewSet(ShowsNestedViewSet):
     serializer_class = serializers.CinemaShowNestedSerializer
 
-class FilmShowsNestedViewSet(ShowsNestedViewSet):
-    serializer_class = serializers.FilmShowNestedSerializer
+class MovieShowsNestedViewSet(ShowsNestedViewSet):
+    serializer_class = serializers.MovieShowNestedSerializer
 

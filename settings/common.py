@@ -71,7 +71,7 @@ INSTALLED_APPS = (
     "cinemair",
     "cinemair.common",
     "cinemair.users",
-    "cinemair.films",
+    "cinemair.movies",
     "cinemair.cinemas",
     "cinemair.shows",
     "cinemair.events",

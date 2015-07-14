@@ -7,12 +7,12 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('films', '0001_initial'),
+        ('movies', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='film',
+            model_name='movie',
             name='mdb_id',
             field=models.IntegerField(null=True, verbose_name='themoviedb id', blank=True),
         ),

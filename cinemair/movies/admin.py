@@ -5,8 +5,8 @@ from cinemair.shows.admin import ShowsInline
 from . import models
 
 
-@admin.register(models.Film)
-class Films(admin.ModelAdmin):
+@admin.register(models.Movie)
+class Movies(admin.ModelAdmin):
     fieldsets = (
         (None, {"fields": ("name", "mdb_id")}),
     )

@@ -10,11 +10,11 @@ from cinemair.shows.api import CinemaShowsNestedViewSet
                  parents_query_lookups=["cinema"]))
 
 
-from cinemair.films.api import FilmsViewSet
-from cinemair.shows.api import FilmShowsNestedViewSet
-(router.register(r"films", FilmsViewSet, base_name="films")
-       .register(r"shows", FilmShowsNestedViewSet, base_name="films-shows",
-                 parents_query_lookups=["film"]))
+from cinemair.movies.api import MoviesViewSet
+from cinemair.shows.api import MovieShowsNestedViewSet
+(router.register(r"movies", MoviesViewSet, base_name="movies")
+       .register(r"shows", MovieShowsNestedViewSet, base_name="movies-shows",
+                 parents_query_lookups=["movie"]))
 
 
 from cinemair.shows.api import ShowsViewSet
