@@ -10,11 +10,19 @@ from cinemair.shows.models import Show
 from cinemair.events.models import Event
 
 NUM_USERS = 9
-NUM_CINEMAS = 6
-NUM_FILMS = 10
 NUM_SHOWS = 400
 RANGE_EVENTS = [3, 8]
+MOVIES_IDS = [157336, 155, 98, 76341, 278, 238, 600, 78, 935, 185, 539, 346, 289, 389, 914, 5156, 653, 626, 19]
 
+CINEMAS = [
+    ("The Urban Beach Cinema Conde Duque", "Conde Duque, 11"),
+    ("Sunset Cinema", "Plaza de Cibeles"),
+    ("Parque de la Bombilla", "Av. De Valladolid"),
+    ("Auditorio Parque Calero", "Calle José del Hierro"),
+    ("Cine Doré", "Santa Isabel, 3"),
+    ("La Casa Encendida", "Ronda de Valencia, 2"),
+    ("Cine en el paraíso", "Parque el Paraíso"),
+]
 
 class Command(BaseCommand):
     sd = SampleDataHelper(seed=1234567890)
@@ -25,12 +33,12 @@ class Command(BaseCommand):
         self._create_admin_user()
 
         # Create cinemas
-        for i in range(1, NUM_CINEMAS + 1):
-            self._create_cinema()
+        for name, address in CINEMAS:
+            self._create_cinema(name, address)
 
         # Create movies
-        for i in range(1, NUM_FILMS + 1):
-            self._create_movie()
+        for i in MOVIES_IDS:
+            self._create_movie(i)
 
         # Create shows
         for i in range(1, NUM_SHOWS + 1):
@@ -69,15 +77,15 @@ class Command(BaseCommand):
         user.save()
         return user
 
-    def _create_cinema(self):
-        return Cinema.objects.create(name=self.sd.words(1, 3),
-                                     address="{}, {}".format(self.sd.words(1, 3), self.sd.int(1, 200)),
+    def _create_cinema(self, name, address):
+        return Cinema.objects.create(name=name,
+                                     address=address,
                                      city="Madrid",
                                      country="Spain")
 
-    def _create_movie(self):
+    def _create_movie(self, id):
         return Movie.objects.create(name=self.sd.words(1, 5),
-                                    tmdb_id=self.sd.int(500, 600))
+                                    tmdb_id=id)
 
     def _create_show(self):
         return Show.objects.create(movie=self.sd.db_object(Movie),
