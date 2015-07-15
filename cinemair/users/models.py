@@ -51,6 +51,9 @@ class User(AbstractBaseUser, PermissionsMixin):
                                        verbose_name=_("date joined"))
 
 
+    google_id = models.CharField(null=True, blank=True, max_length=256, verbose_name=_("google id"))
+
+
     USERNAME_FIELD = "username"
     REQUIRED_FIELDS = ["email", "full_name"]
 

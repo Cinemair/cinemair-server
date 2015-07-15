@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework import mixins
 
 
 class GenericViewSet(viewsets.GenericViewSet):
@@ -24,3 +25,8 @@ class ReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     pass
 
+class CreateModelViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
+    """
+    Create objects mixin
+    """
+    pass

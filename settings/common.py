@@ -116,3 +116,8 @@ WSGI_APPLICATION = "wsgi.application"
 
 # The MovieDB API KEY
 THEMOVIEDB_API_KEY = '247e0e9d8f8cadd19b1cc9b925a68270'
+
+# Google Auth
+GOOGLE_API_CLIENT_ID = "661976506904-t5hdjfsvggji8vt9k2jqfk1bs2st3c23.apps.googleusercontent.com"
+GOOGLE_API_CLIENT_SECRET = "midz4fIPfiqNIcCz6brwYTya"
+GOOGLE_API_REDIRECT_URI = "http://localhost:8100/"
