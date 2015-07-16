@@ -114,6 +114,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "wsgi.application"
 
+
+# Rest framework
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        # Mainly used by taiga-front
+        "cinemair.users.backends.Token",
+
+        # Mainly used for api debug.
+        "cinemair.users.backends.Session",
+    ),
+}
+
+
 # The MovieDB API KEY
 THEMOVIEDB_API_KEY = '247e0e9d8f8cadd19b1cc9b925a68270'
 
