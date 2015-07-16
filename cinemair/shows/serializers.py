@@ -25,7 +25,7 @@ class ShowSerializer(serializers.ModelSerializer):
         del data["id"]
         return data
 
-    def get_event(self obj):
+    def get_event(self, obj):
         try:
             return obj.events.get(user=self.context['request'].user).id
         except:
