@@ -12,9 +12,10 @@ from cinemair.events.models import Event
 NUM_USERS = 9
 NUM_SHOWS = 400
 RANGE_EVENTS = [3, 8]
-MOVIES_IDS = [157336, 155, 98, 76341, 278, 238, 600, 78, 935, 185, 539, 346, 289, 389, 914, 5156, 653, 626, 19]
+MOVIES_IDS = [157336, 155, 98, 76341, 278, 238, 600, 78, 935, 185, 539, 346, 289, 389, 914, 5156, 653, 626, 19, 11042, 773, 20607, 575, 31175]
 
 CINEMAS = [
+    ("Cine de verano de Malasaña", "Calle Antonio Grilo, 8"),
     ("The Urban Beach Cinema Conde Duque", "Conde Duque, 11"),
     ("Sunset Cinema", "Plaza de Cibeles"),
     ("Parque de la Bombilla", "Av. De Valladolid"),
