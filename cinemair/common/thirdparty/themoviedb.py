@@ -19,3 +19,9 @@ def movie_info(id):
         return tmdb.Movies(id).info()
     except HTTPError:
         return None
+
+def movie_videos(id):
+    try:
+        return tmdb.Movies(id).videos()
+    except HTTPError:
+        return None
