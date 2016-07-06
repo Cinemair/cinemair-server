@@ -1,7 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import JSONField
 from django.utils.translation import ugettext_lazy as _
-
-from django_pgjson.fields import JsonBField
 
 from cinemair.common.thirdparty import themoviedb as tmdb
 
@@ -9,8 +8,8 @@ from cinemair.common.thirdparty import themoviedb as tmdb
 class Movie(models.Model):
     name = models.CharField(max_length=500, verbose_name=_("name"))
     tmdb_id = models.IntegerField(null=True, blank=True, verbose_name=_("themoviedb id"))
-    tmdb_info = JsonBField(null=True, blank=True, verbose_name=_("themoviedb info"))
-    tmdb_videos= JsonBField(null=True, blank=True, verbose_name=_("themoviedb videos"))
+    tmdb_info = JSONField(null=True, blank=True, verbose_name=_("themoviedb info"))
+    tmdb_videos= JSONField(null=True, blank=True, verbose_name=_("themoviedb videos"))
 
     class Meta:
         verbose_name = _("movie")

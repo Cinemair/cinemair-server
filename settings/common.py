@@ -17,7 +17,6 @@ SECRET_KEY = "e_tbs-l(@so@u(go#qouuhtkh656%a=erx%bb(pi=hl2j=z%yl"
 
 # SECURITY WARNING: don"t run with debug turned on in production!
 DEBUG = False
-TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -27,7 +26,7 @@ ALLOWED_HOSTS = ["*"]
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "ENGINE": "django.db.backends.postgresql",
         "NAME": "cinemair",
     }
 }
@@ -66,7 +65,6 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "django_pgjson",
     "rest_framework",
 
     "cinemair",

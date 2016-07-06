@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import django.contrib.postgres.fields.jsonb
 from django.db import models, migrations
-import django_pgjson.fields
 
 
 class Migration(migrations.Migration):
@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='movie',
             name='tmdb_info',
-            field=django_pgjson.fields.JsonBField(blank=True, verbose_name='themoviedb info', null=True),
+            field=django.contrib.postgres.fields.jsonb.JSONField(blank=True, null=True, verbose_name='themoviedb info'),
         ),
     ]
