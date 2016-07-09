@@ -3,4 +3,4 @@
 ipython
 ipdb
 
-django-sampledatahelper==0.3
+django-sampledatahelper==0.4
