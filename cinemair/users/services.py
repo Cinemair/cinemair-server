@@ -56,7 +56,7 @@ def google_register(username:str, email:str, full_name:str, google_id:int):
 
 
 def google_login(request):
-    code = request.DATA.get('code', None)
+    code = request.data.get('code', None)
 
     user_info = google.me(code)
 
