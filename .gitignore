@@ -61,5 +61,7 @@ target/
 .*.sw*
 
 # cinemair
-/static/
-/media/
+static/
+media/
+settings/local.py
+
