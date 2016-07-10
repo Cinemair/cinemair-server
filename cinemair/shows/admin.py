@@ -16,6 +16,6 @@ class Show(admin.ModelAdmin):
     list_display = ("id", "cinema", "movie", "datetime")
     #list_editable = (,)
     list_filter = ("cinema",)
-    search_fields = ("id", "cinema__name", "movie__title", "datetime")
+    search_fields = ("id", "cinema__name", "movie__name", "datetime")
     date_hierarchy = "datetime"
     ordering = ("cinema", "datetime")
