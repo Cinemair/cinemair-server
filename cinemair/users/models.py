@@ -4,6 +4,7 @@ from django.contrib.auth.models import UserManager, AbstractBaseUser
 from django.core import validators
 from django.utils import timezone
 
+from uuslug import uuslug
 import re
 
 
@@ -63,6 +64,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = "user"
         verbose_name_plural = "users"
         ordering = ["username"]
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            username = uuslug(self.username, instance=self, slug_field="username")
+            self.username = username
+        super().save(*args, **kwargs)
 
     def get_short_name(self):
         return self.username

@@ -8,8 +8,6 @@ from . import serializers
 from . import token
 
 
-
-
 def make_auth_response_data(user) -> dict:
     """
     Given a domain and user, creates data structure
@@ -27,7 +25,7 @@ def make_auth_response_data(user) -> dict:
 ################################
 
 @tx.atomic
-def google_register(username:str, email:str, full_name:str, google_id:int):
+def _google_register(username:str, email:str, full_name:str, google_id:int):
     """
     Register a new user from google.
     This can raise `exc.IntegrityError` exceptions in
@@ -60,10 +58,10 @@ def google_login(request):
 
     user_info = google.me(code)
 
-    user = google_register(username=user_info.username,
-                           email=user_info.email,
-                           full_name=user_info.full_name,
-                           google_id=user_info.id)
+    user = _google_register(username=user_info.username,
+                            email=user_info.email,
+                            full_name=user_info.full_name,
+                            google_id=user_info.id)
 
     data = make_auth_response_data(user)
     return data
