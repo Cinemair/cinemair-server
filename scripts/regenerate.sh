@@ -1,13 +1,16 @@
 #!/bin/bash
 
-ARGS=("$@")
-
 show_answer=true
+from_fixtures=false
+
 while [ $# -gt 0 ]; do
   	case "$1" in
-    	-y)
+    	-y|--no-confirm)
     	  	show_answer=false
-      	;;
+      	    ;;
+        -f|--from-fixtures)
+            from_fixtures=true
+      	    ;;
   	esac
 	shift
 done
@@ -31,7 +34,7 @@ echo "-> Load migrations"
 python manage.py migrate
 
 echo "-> Populate the data base"
-if [ $ARGS == "--from-fixtures" ]; then
+if $from_fixtures ; then
     python manage.py sampledata --from-fixtures --traceback
 else
     python manage.py sampledata --traceback
