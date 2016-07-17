@@ -26,36 +26,59 @@ CINEMAS = [
 ]
 
 class Command(BaseCommand):
+    help = 'Populate an empty database with data for development purpose.'
     sd = SampleDataHelper(seed=1234567890)
+
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "--from-fixtures",
+            action="store_true",
+            dest="from-fixtures",
+            default=False,
+            help="Load more real dates from a fixture (default false)",
+        )
 
     @transaction.atomic
     def handle(self, *args, **options):
         # Create admin user
+        self.stdout.write(" -> Create admin user [ username: 'admin' | password: '123123' ]. ")
         self._create_admin_user()
 
-        # Create cinemas
-        for name, address in CINEMAS:
-            self._create_cinema(name, address)
+        if options["from-fixtures"]:
+            self.stdout.write(" -> Load data from fixtures.")
+            self._populate_with_fixtures()
+        else:
+            self.stdout.write(" -> Generate sample data.")
+            self._populate_with_sampledata()
 
-        # Create movies
-        for i in MOVIES_IDS:
-            self._create_movie(i)
+    def _populate_with_fixtures(self):
+        from django.core.management import call_command
+        call_command("loaddata", "initial_data", traceback=True)
 
-        # Create shows
-        for i in range(1, NUM_SHOWS + 1):
-            self._create_show()
+    def _populate_with_sampledata(self):
+            # Create cinemas
+            for name, address in CINEMAS:
+                self._create_cinema(name, address)
 
-        # Create users
-        for i in range(1, NUM_USERS + 1):
-            self._create_user(i)
+            # Create movies
+            for i in MOVIES_IDS:
+                self._create_movie(i)
 
-        # Create events
-        for user in User.objects.all():
-            shows = Show.objects.all()
-            for i in range(self.sd.int(RANGE_EVENTS[0], RANGE_EVENTS[1])):
-                show = self.sd.db_object_from_queryset(shows)
-                self._create_event(user, show)
-                shows = shows.exclude(id=show.id)
+            # Create shows
+            for i in range(1, NUM_SHOWS + 1):
+                self._create_show()
+
+            # Create users
+            for i in range(1, NUM_USERS + 1):
+                self._create_user(i)
+
+            # Create events
+            for user in User.objects.all():
+                shows = Show.objects.all()
+                for i in range(self.sd.int(RANGE_EVENTS[0], RANGE_EVENTS[1])):
+                    show = self.sd.db_object_from_queryset(shows)
+                    self._create_event(user, show)
+                    shows = shows.exclude(id=show.id)
 
 
     def _create_admin_user(self):

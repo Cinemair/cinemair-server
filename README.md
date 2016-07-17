@@ -10,7 +10,8 @@
   mkvirtualenv -p /usr/bin/python3 cinemair
   pip install -r requirements-devel.txt
 
-  scripts/regenerate.sh
+  # Use --from-fixtures if you want more realistic dates
+  ./scripts/regenerate.sh
 
   ./manage.py runserver
   ```
