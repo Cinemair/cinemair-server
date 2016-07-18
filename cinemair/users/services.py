@@ -1,6 +1,7 @@
-from django.db import transaction as tx
 from django.apps import apps
+from django.db import transaction as tx
 from django.conf import settings
+from django.utils import timezone
 
 from cinemair.users.connectors import google
 
@@ -42,13 +43,15 @@ def _google_register(username:str, email:str, full_name:str, google_id:int):
             # Is a user with the same email as the google user?
             user = user_model.objects.get(email=email)
             user.google_id = google_id
-            user.save()
         except user_model.DoesNotExist:
             # Create a new user
             user = user_model.objects.create(email=email,
                                              username=username,
                                              full_name=full_name,
                                              google_id=google_id)
+
+    user.last_login = timezone.now()
+    user.save()
 
     return user
 

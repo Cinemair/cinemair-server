@@ -39,7 +39,7 @@ class Users(DjangoUserAdmin):
             "fields": ("username", "email", "password1", "password2"),
         }),
     )
-    list_display = ("username", "email", "full_name", "is_superuser")
+    list_display = ("username", "email", "full_name", "is_superuser", "last_login")
     list_filter = ("is_active", "is_superuser",)
     search_fields = ("email","username", "full_name")
     ordering = ("email",)
