@@ -9,12 +9,12 @@ from . import models
 
 class ShowsViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.ShowSerializer
-    queryset = services.get_all_shows()
+    queryset = services.get_all_upcoming_shows()
     permission_classes = (permissions.IsAuthenticated,)
 
 class ShowsNestedViewSet(mixins.NestedViewSetMixin, viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
-    queryset = services.get_all_shows()
+    queryset = services.get_all_upcoming_shows()
 
 class CinemaShowsNestedViewSet(ShowsNestedViewSet):
     serializer_class = serializers.CinemaShowNestedSerializer

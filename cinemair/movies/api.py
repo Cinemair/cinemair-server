@@ -7,5 +7,5 @@ from . import services
 
 class MoviesViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.MovieSerializer
-    queryset = services.get_all_movies()
+    queryset = services.get_all_upcoming_movies()
     permission_classes = (permissions.IsAuthenticated,)
