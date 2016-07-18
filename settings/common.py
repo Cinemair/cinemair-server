@@ -126,8 +126,8 @@ REST_FRAMEWORK = {
 
 
 # The MovieDB API KEY
-THEMOVIEDB_API_KEY = '247e0e9d8f8cadd19b1cc9b925a68270'
-THEMOVIEDB_LANG_CODE = None # 'es' or 'de' or 'fr'....
+THEMOVIEDB_API_KEY = "247e0e9d8f8cadd19b1cc9b925a68270"
+THEMOVIEDB_LANG_CODE = "es" # None == 'en', 'es', 'de', 'fr'....
 
 
 # Google Auth
