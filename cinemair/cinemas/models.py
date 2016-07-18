@@ -4,9 +4,13 @@ from django.utils.translation import ugettext_lazy as _
 
 class Cinema(models.Model):
     name = models.CharField(max_length=500, verbose_name=_("name"))
+
     address = models.TextField(null=True, blank=True, verbose_name=_("address"))
     city = models.CharField(max_length=500, null=True, blank=True, verbose_name=_("city"))
     country = models.CharField(max_length=500, null=True, blank=True, verbose_name=_("country"))
+
+    approximate_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True,
+                                            verbose_name=_("approximate price"))
 
     class Meta:
         verbose_name = _("cinema")
