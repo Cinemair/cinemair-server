@@ -12,13 +12,26 @@ if not hasattr(settings, "THEMOVIEDB_API_KEY"):
 
 tmdb.API_KEY = settings.THEMOVIEDB_API_KEY
 
+LANG_CODE = getattr(settings, "THEMOVIEDB_LANG_CODE", None)
 
 
 def movie_info(id):
+    info = {}
+    info2 = {}
+
     try:
-        return tmdb.Movies(id).info()
+        info = tmdb.Movies(id).info()
     except HTTPError:
         return None
+
+    if LANG_CODE:
+        try:
+            info2 = tmdb.Movies(id).info(language=LANG_CODE)
+        except HTTPError:
+            return info
+
+    return {**info, **info2}
+
 
 def movie_videos(id):
     try:
