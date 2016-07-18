@@ -34,7 +34,18 @@ def movie_info(id):
 
 
 def movie_videos(id):
+    info = []
+    info2 = []
+
     try:
-        return tmdb.Movies(id).videos()
+        info = tmdb.Movies(id).videos().get("results", [])
     except HTTPError:
         return None
+
+    if LANG_CODE:
+        try:
+            info2 = tmdb.Movies(id).videos(language=LANG_CODE).get("results", [])
+        except HTTPError:
+            return info
+
+    return info2 or info

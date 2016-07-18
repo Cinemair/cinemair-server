@@ -9,7 +9,7 @@ class Movie(models.Model):
     name = models.CharField(max_length=500, verbose_name=_("name"))
     tmdb_id = models.IntegerField(null=True, blank=True, verbose_name=_("themoviedb id"))
     tmdb_info = JSONField(null=True, blank=True, verbose_name=_("themoviedb info"))
-    tmdb_videos= JSONField(null=True, blank=True, verbose_name=_("themoviedb videos"))
+    tmdb_videos = JSONField(null=True, blank=True, verbose_name=_("themoviedb videos"))
 
     class Meta:
         verbose_name = _("movie")
