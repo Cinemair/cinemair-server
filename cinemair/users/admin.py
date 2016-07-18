@@ -5,6 +5,8 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.utils.translation import ugettext_lazy as _
 
+from cinemair.events.admin import EventsInline
+
 from .models import User
 from .forms import UserCreationForm
 from .forms import UserChangeForm
@@ -42,3 +44,4 @@ class Users(DjangoUserAdmin):
     search_fields = ("email","username", "full_name")
     ordering = ("email",)
     filter_horizontal = ()
+    inlines = [EventsInline,]
