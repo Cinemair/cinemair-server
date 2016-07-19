@@ -15,14 +15,14 @@ RANGE_EVENTS = [3, 8]
 MOVIES_IDS = [157336, 155, 98, 76341, 278, 238, 600, 78, 935, 185, 539, 346, 289, 389, 914, 5156, 653, 626, 19, 11042, 773, 20607, 575, 31175]
 
 CINEMAS = [
-    ("Cine de verano de Malasaña", "Calle Antonio Grilo, 8"),
-    ("The Urban Beach Cinema Conde Duque", "Conde Duque, 11"),
-    ("Sunset Cinema", "Plaza de Cibeles"),
-    ("Parque de la Bombilla", "Av. De Valladolid"),
-    ("Auditorio Parque Calero", "Calle José del Hierro"),
-    ("Cine Doré", "Santa Isabel, 3"),
-    ("La Casa Encendida", "Ronda de Valencia, 2"),
-    ("Cine en el paraíso", "Parque el Paraíso"),
+    ("Cine de verano de Malasaña", "Calle Antonio Grilo, 8", 8.00),
+    ("The Urban Beach Cinema Conde Duque", "Conde Duque, 11", 6.50),
+    ("Sunset Cinema", "Plaza de Cibeles", 1.20),
+    ("Parque de la Bombilla", "Av. De Valladolid", 0.00),
+    ("Auditorio Parque Calero", "Calle José del Hierro", 4.50),
+    ("Cine Doré", "Santa Isabel, 3", 3.65),
+    ("La Casa Encendida", "Ronda de Valencia, 2", 2.80),
+    ("Cine en el paraíso", "Parque el Paraíso", 4.99),
 ]
 
 class Command(BaseCommand):
@@ -56,29 +56,29 @@ class Command(BaseCommand):
         call_command("loaddata", "initial_data", traceback=True)
 
     def _populate_with_sampledata(self):
-            # Create cinemas
-            for name, address in CINEMAS:
-                self._create_cinema(name, address)
+        # Create cinemas
+        for name, address, price in CINEMAS:
+            self._create_cinema(name, address, price)
 
-            # Create movies
-            for i in MOVIES_IDS:
-                self._create_movie(i)
+        # Create movies
+        for i in MOVIES_IDS:
+            self._create_movie(i)
 
-            # Create shows
-            for i in range(1, NUM_SHOWS + 1):
-                self._create_show()
+        # Create shows
+        for i in range(1, NUM_SHOWS + 1):
+            self._create_show()
 
-            # Create users
-            for i in range(1, NUM_USERS + 1):
-                self._create_user(i)
+        # Create users
+        for i in range(1, NUM_USERS + 1):
+            self._create_user(i)
 
-            # Create events
-            for user in User.objects.all():
-                shows = Show.objects.all()
-                for i in range(self.sd.int(RANGE_EVENTS[0], RANGE_EVENTS[1])):
-                    show = self.sd.db_object_from_queryset(shows)
-                    self._create_event(user, show)
-                    shows = shows.exclude(id=show.id)
+        # Create events
+        for user in User.objects.all():
+            shows = Show.objects.all()
+            for i in range(self.sd.int(RANGE_EVENTS[0], RANGE_EVENTS[1])):
+                show = self.sd.db_object_from_queryset(shows)
+                self._create_event(user, show)
+                shows = shows.exclude(id=show.id)
 
 
     def _create_admin_user(self):
@@ -101,9 +101,10 @@ class Command(BaseCommand):
         user.save()
         return user
 
-    def _create_cinema(self, name, address):
+    def _create_cinema(self, name, address, approximate_price):
         return Cinema.objects.create(name=name,
                                      address=address,
+                                     approximate_price=approximate_price,
                                      city="Madrid",
                                      country="Spain")
 
