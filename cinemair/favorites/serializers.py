@@ -6,11 +6,11 @@ from cinemair.shows.serializers import ShowRelatedSerializer
 from  . import models
 
 
-class EventSerializer(serializers.ModelSerializer):
+class FavoriteSerializer(serializers.ModelSerializer):
     show_info = drf_serializers.SerializerMethodField()
 
     class Meta:
-        model = models.Event
+        model = models.Favorite
 
     def get_show_info(self, obj):
         data = ShowRelatedSerializer(obj.show).data

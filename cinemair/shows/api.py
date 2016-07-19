@@ -12,8 +12,7 @@ class ShowsViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        return  services.get_all_upcoming_shows()
-
+        return services.get_all_upcoming_shows()
 
 class ShowsNestedViewSet(mixins.NestedViewSetMixin, viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticated,)

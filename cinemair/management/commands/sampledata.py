@@ -7,7 +7,7 @@ from cinemair.users.models import User
 from cinemair.cinemas.models import Cinema
 from cinemair.movies.models import Movie
 from cinemair.shows.models import Show
-from cinemair.events.models import Event
+from cinemair.favorites.models import Favorite
 
 NUM_USERS = 9
 NUM_SHOWS = 400
@@ -72,12 +72,12 @@ class Command(BaseCommand):
         for i in range(1, NUM_USERS + 1):
             self._create_user(i)
 
-        # Create events
+        # Create favorites
         for user in User.objects.all():
             shows = Show.objects.all()
             for i in range(self.sd.int(RANGE_EVENTS[0], RANGE_EVENTS[1])):
                 show = self.sd.db_object_from_queryset(shows)
-                self._create_event(user, show)
+                self._create_favorite(user, show)
                 shows = shows.exclude(id=show.id)
 
 
@@ -118,5 +118,5 @@ class Command(BaseCommand):
                                    datetime=self.sd.future_datetime(max_distance=60*24*90))
 
 
-    def _create_event(self, user, show):
-        return Event.objects.create(user=user, show=show)
+    def _create_favorite(self, user, show):
+        return Favorite.objects.create(user=user, show=show)

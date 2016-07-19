@@ -10,7 +10,7 @@ from  . import models
 class ShowSerializer(serializers.ModelSerializer):
     movie_info = drf_serializers.SerializerMethodField()
     cinema_info = drf_serializers.SerializerMethodField()
-    event = drf_serializers.SerializerMethodField()
+    favorite = drf_serializers.SerializerMethodField()
 
     class Meta:
         model = models.Show
@@ -25,9 +25,9 @@ class ShowSerializer(serializers.ModelSerializer):
         del data["id"]
         return data
 
-    def get_event(self, obj):
+    def get_favorite(self, obj):
         try:
-            return obj.events.get(user=self.context['request'].user).id
+            return obj.favorites.get(user=self.context['request'].user).id
         except:
             return None
 

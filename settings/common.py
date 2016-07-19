@@ -73,7 +73,7 @@ INSTALLED_APPS = (
     "cinemair.movies",
     "cinemair.cinemas",
     "cinemair.shows",
-    "cinemair.events",
+    "cinemair.favorites",
 )
 
 

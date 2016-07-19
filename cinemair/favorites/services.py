@@ -1,10 +1,10 @@
 from django.utils import timezone
 
-from .models import Event
+from .models import Favorite
 
 
-def get_all_upcoming_events():
-    return (Event.objects.select_related('user',
+def get_all_upcoming_favorites():
+    return (Favorite.objects.select_related('user',
                                         "show",
                                         "show__cinema",
                                         "show__movie")

@@ -8,7 +8,8 @@ class GenericViewSet(viewsets.GenericViewSet):
     but does include the base set of generic view behavior, such as
     the `get_object` and `get_queryset` methods.
     """
-    pass
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 
 class ModelViewSet(viewsets.ModelViewSet):
@@ -16,17 +17,21 @@ class ModelViewSet(viewsets.ModelViewSet):
     A viewset that provides default `create()`, `retrieve()`, `update()`,
     `partial_update()`, `destroy()` and `list()` actions.
     """
-    pass
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 
 class ReadOnlyModelViewSet(viewsets.ReadOnlyModelViewSet):
     """
     A viewset that provides default `list()` and `retrieve()` actions.
     """
-    pass
+    def get_serializer_context(self):
+        return {'request': self.request}
+
 
 class CreateModelViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     """
     Create objects mixin
     """
-    pass
+    def get_serializer_context(self):
+        return {'request': self.request}
