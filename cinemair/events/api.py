@@ -7,8 +7,7 @@ from . import services
 
 class EventsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.EventSerializer
-    queryset = services.get_all_upcoming_events()
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        return super().get_queryset().filter(user=self.request.user)
+        return services.get_all_upcoming_events().filter(user=self.request.user)

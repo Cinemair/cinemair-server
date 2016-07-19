@@ -7,6 +7,8 @@ from . import services
 
 class CinemasViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.CinemaSerializer
-    queryset = services.get_all_cinemas()
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        return services.get_all_cinemas()
 
