@@ -16,3 +16,14 @@ class FavoriteSerializer(serializers.ModelSerializer):
         data = ShowRelatedSerializer(obj.show).data
         del data["id"]
         return data
+
+    def validate_user(self, value):
+        """
+        Check that the user is the same as request.user.
+        """
+        if "request" in self.context:
+            current_user = self.context["request"].user
+
+            if current_user != value:
+                raise drf_serializers.ValidationError("User must be you.")
+        return value
