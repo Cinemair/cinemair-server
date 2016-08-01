@@ -1,5 +1,21 @@
 #!/bin/bash
 
+function print_help_message {
+    echo "Usage: ./scripts/regenerate.sh [OPTIONS]"
+    echo "This command regenerate the Cinemair DB."
+    echo ""
+    echo "  -f, --from-fixtures     Use real fixtures [sample"
+    echo "                          datat by default]."
+    echo "  -h, --help              Show this help message."
+    echo "  -y, ---no-confirm       No confirm DB deletion."
+    echo ""
+
+    exit 1
+}
+
+
+
+
 show_answer=true
 from_fixtures=false
 
@@ -11,6 +27,13 @@ while [ $# -gt 0 ]; do
         -f|--from-fixtures)
             from_fixtures=true
       	    ;;
+        -h|--help)
+            print_help_message
+            ;;
+        *)
+            echo "ERROR: Ivalid usage!!!."
+            print_help_message
+            ;;
   	esac
 	shift
 done
